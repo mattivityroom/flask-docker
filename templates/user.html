@@ -1,0 +1,6 @@
+<!doctype html>
+{% if username == 'admin' %}
+    <h1>Hello, SUPER USER!</h1>
+{% else %}
+    <h1>Hello, {{ username }}!</h1>
+{% endif %}

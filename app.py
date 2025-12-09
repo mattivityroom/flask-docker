@@ -1,5 +1,5 @@
 # app.py
-from flask import Flask, request, url_for
+from flask import Flask, request, url_for, render_template, request
 from markupsafe import escape
 
 app = Flask(__name__)
@@ -15,11 +15,19 @@ def login():
 
 @app.route('/user/<string:username>')
 def user_detail(username):
-    return f"{escape(username.capitalize())}'s user profile!"
+    return render_template('user.html', username=username)
+    # return f"{escape(username.capitalize())}'s user profile!"
 
 @app.route('/path/<path:subpath>')
 def show_path(subpath):
     return f"Subpath {escape(subpath)}"
+
+@app.route('/issues', methods=['GET', 'POST'])
+def issues():
+    if request.method == 'POST':
+        return 'Hello this is POST issue'
+    else:
+        return 'Hello this is GET issue'
 
 with app.test_request_context():
     print(url_for('hello'))
