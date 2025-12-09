@@ -15,6 +15,7 @@ def login():
 
 @app.route('/user/<string:username>')
 def user_detail(username):
+    app.logger.debug('user path')
     return render_template('user.html', username=username)
     # return f"{escape(username.capitalize())}'s user profile!"
 
